@@ -20,12 +20,7 @@ class App extends Component {
   handleSubmit(event) {
     event.preventDefault();
     const text = ReactDOM.findDOMNode(this.refs.textInput).value.trim();
-    Tasks.insert({
-      text,
-      createdAt: new Date(),
-      owner: Meteor.userId(), // _id
-      username: Meteor.user().username,
-    });
+    Meteor.call('tasks.insert', text);
     ReactDOM.findDOMNode(this.refs.textInput).value = '';
   }
 
